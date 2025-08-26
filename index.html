@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#111827" />
+  <title>Cyber Trace</title>
+  <!-- Tailwind (with forms & typography plugins) -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+</head>
+<body class="min-h-screen bg-gray-50 text-gray-900">
+  <div id="root"></div>
+
+  <!-- React 18 UMD + Babel (to run JSX without a build step) -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <!-- App code -->
+  <script type="text/babel" data-presets="react">
+    function Card({ title, children, kicker }) {
+      return (
+        <section className="mb-6">
+          <div className="rounded-2xl bg-white shadow-sm ring-1 ring-gray-200">
+            <div className="p-5 border-b border-gray-100">
+              {kicker && (
+                <p className="uppercase tracking-wider text-[11px] text-gray-400 mb-1">
+                  {kicker}
+                </p>
+              )}
+              <h2 className="text-lg font-semibold">{title}</h2>
+            </div>
+            <div className="p-5 prose prose-sm max-w-none">
+              {children}
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    function Home() {
+      return (
+        <div className="grid gap-6">
+          <Card title="Welcome">
+            <p>
+              This mini website has a clean menu bar with two tabs. Click
+              <strong> Challenge 1</strong> to see the brief turned into a
+              story-like mission log.
+            </p>
+          </Card>
+          <Card title="What you’ll find" kicker="Overview">
+            <ul className="list-disc pl-5">
+              <li>A narrative based on the supplied challenge text.</li>
+              <li>
+                Each section is presented as a chapter (briefing, coordinates,
+                ciphers, leads, and final clue).
+              </li>
+              <li>Perfect as a starting point for a puzzle-solving webpage.</li>
+            </ul>
+          </Card>
+        </div>
+      );
+    }
+
+    function ChallengeOne() {
+      return (
+        <article className="grid gap-6">
+          <header className="text-center">
+            <h1 className="text-2xl font-bold">Challenge 1 — Mission Log</h1>
+            <p className="mt-1 text-gray-600">
+              The following story assembles each provided section into a coherent
+              case file. Follow the trail.
+            </p>
+          </header>
+
+          <Card title="The Brief" kicker="Chapter 1">
+            <p>
+              An urgent note lands on your desk: a cyber criminal is on the move,
+              leaving faint digital footprints. Your task is to follow those tracks
+              and shut them down. The suspect has a habit of hiding keys inside the
+              names of buildings—an odd quirk, but it’s helped investigators before.
+            </p>
+          </Card>
+
+          <Card title="Ping from the Field" kicker="Chapter 2 – Coordinates">
+            <p>
+              A suspicious device lights up somewhere in <em>[REDACTED]</em>. Its
+              trace yields precise mapping data:
+            </p>
+            <pre className="whitespace-pre-wrap">
+51.4492441, -2.5872027, 3a, 7y, 279.97h, 92.54t
+            </pre>
+            <p>
+              You swivel to the big screen, punch in the numbers, and let the map
+              settle. If the suspect is using building names as keys, then
+              identifying the exact building could unlock the next stage.
+            </p>
+          </Card>
+
+          <Card title="Whispers on the Wire" kicker="Chapter 3 – Intercepts">
+            <p>Two short bursts arrive over a noisy channel:</p>
+            <blockquote className="italic">“That intersection has its cynpr”</blockquote>
+            <blockquote className="italic">“E96 DEC66E G:6H 96C6 :D 8C62E”</blockquote>
+            <p>
+              Different ciphers, same mouth. The first line hints at a place hidden
+              inside a word; the second arrives in mechanical glyphs that look like
+              a substitution waiting to be tamed.
+            </p>
+          </Card>
+
+          <Card title="The Locked Letter" kicker="Chapter 4 – Encrypted Note">
+            <p>
+              A longer message appears—clearly encrypted—and rumored to require a
+              key derived from that building’s name:
+            </p>
+            <pre className="whitespace-pre-wrap">
+X hybjk hp hsowps igznaop dfr grrfpipizy bptjssg kh ooxpisipk bcix ioopgy
+IX YIT8 reoo xlzp swvt mfnn pszcp Ccri Pv Vwlwps
+            </pre>
+            <p>
+              Your pen hovers. If the location is the key, then the door this text
+              guards might finally swing open.
+            </p>
+          </Card>
+
+          <Card title="Open Source Shadows" kicker="Chapter 5 – Lead">
+            <p>
+              Word on the street: the suspect’s public profile leaks secrets.
+              Another investigator slides you a link: a GitHub account that might
+              be more than it appears.
+            </p>
+            <p className="font-mono break-all">https://github.com/nodepec</p>
+            <p>
+              If there’s a key anywhere, it could be buried in commits, releases, or
+              a cheeky profile README.
+            </p>
+          </Card>
+
+          <Card title="The Meeting Spot" kicker="Chapter 6 – Rendezvous">
+            <p>
+              Another intercept fires in, this time with two parts—one looks like a
+              simple letter-twist, the other reeks of hexadecimal character codes:
+            </p>
+            <blockquote className="italic">
+              “uryyb jr fubhyq zrrg ng gur zrrgvat fcbg 12 jr pna gnyx zber jura jr
+              trg gurer”
+            </blockquote>
+            <blockquote className="font-mono">
+              79 65 73 20 69 20 73 61 69 64 20 54 68 65 20 4d 65 65 74 69 6e 67 20
+              53 70 6f 74 20 31 32
+            </blockquote>
+            <p>
+              The message suggests a time and place—once decoded, it might reveal a
+              rendezvous that narrows the net.
+            </p>
+          </Card>
+
+          <Card title="The Final Dump" kicker="Chapter 7 – Last Chance">
+            <p>Then comes a vast string—dense, unforgiving, and final.</p>
+            <pre className="break-all whitespace-pre-wrap">
+76b16e99f83621692d2785aff46e7ef78ca3b75ad0f46ff531a956fe1b6edf10f9200b8c991059a12625647b84ead9b334edf72f5725ff83a7833efcdc454e429c521ff21173f50eec9e38899ad4a0772d6881dde72f5d87b43ca1906135ce8513d5302bfc6fc821a08688f55745ccd2e9c2f376a33e8cb7afa49d0842ff5051ffba3e8c23f78908238b59515f497aea7b1ad0f1335e52061a6f70deb76c1759af5aae95e3d7312179f827430f446c17c17cf1745b7c1c6418e826a48fda93ec899738f9cfa09caea597769b929ff274
+            </pre>
+            <p>
+              You square your shoulders. If everything before was the trail, this is
+              the vault. Crack it, and the chase may finally end.
+            </p>
+          </Card>
+
+          <Card title="Next Steps" kicker="Epilogue">
+            <ol className="list-decimal pl-5">
+              <li>Identify the exact building from the coordinates.</li>
+              <li>Use that name as a candidate key for the longer note.</li>
+              <li>Comb the GitHub profile for any embedded keys or hints.</li>
+              <li>Decode the meeting message and cross-check the time and spot.</li>
+              <li>Analyze the final dump (hash? ciphertext? file fragment?).</li>
+            </ol>
+            <p className="text-gray-600">
+              Everything you need is in these chapters—the puzzle is now a path.
+            </p>
+          </Card>
+        </article>
+      );
+    }
+
+    function App() {
+      const [tab, setTab] = React.useState("home");
+      return (
+        <div className="min-h-screen bg-gray-50 text-gray-900">
+          <header className="sticky top-0 bg-white/80 backdrop-blur shadow-sm z-50">
+            <nav className="mx-auto max-w-5xl px-4">
+              <div className="flex items-center justify-between py-4">
+                <h1 className="text-xl font-bold tracking-tight">Cyber Trace</h1>
+                <ul className="flex gap-2">
+                  <li>
+                    <button
+                      onClick={() => setTab("home")}
+                      className={"px-4 py-2 rounded-2xl text-sm font-medium transition " + (tab === "home" ? "bg-gray-900 text-white shadow" : "hover:bg-gray-100")}
+                    >Home</button>
+                  </li>
+                  <li>
+                    <button
+                      onClick={() => setTab("challenge")}
+                      className={"px-4 py-2 rounded-2xl text-sm font-medium transition " + (tab === "challenge" ? "bg-gray-900 text-white shadow" : "hover:bg-gray-100")}
+                    >Challenge 1</button>
+                  </li>
+                </ul>
+              </div>
+            </nav>
+          </header>
+
+          <main className="mx-auto max-w-5xl px-4 py-8">
+            {tab === "home" ? <Home /> : <ChallengeOne />}
+          </main>
+
+          <footer className="mx-auto max-w-5xl px-4 py-10 text-sm text-gray-500">
+            <p>Built for a school challenge — two tabs, simple layout, and a story assembled from the provided sections.</p>
+          </footer>
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(<React.StrictMode><App /></React.StrictMode>);
+  </script>
+</body>
+</html>
