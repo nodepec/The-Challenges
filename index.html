@@ -1,36 +1,64 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="h-full">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#111827" />
-  <title>Cyber Trace</title>
-  <!-- Tailwind (with forms & typography plugins) -->
+  <meta name="theme-color" content="#0b1020" />
+  <title>The Challenges</title>
+  <script>
+    (function() {
+      const userPref = localStorage.getItem('theme');
+      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (userPref === 'dark' || (!userPref && systemPrefersDark)) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    })();
+  </script>
   <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              900: '#0b1020'
+            }
+          }
+        }
+      },
+      darkMode: 'class'
+    };
+  </script>
+  <style>
+    :focus-visible { outline: 2px solid transparent; box-shadow: 0 0 0 3px rgba(99,102,241,0.7); border-radius: 0.5rem; }
+  </style>
 </head>
-<body class="min-h-screen bg-gray-50 text-gray-900">
+<body class="min-h-screen bg-gray-50 text-gray-900 dark:bg-gray-950 dark:text-gray-100">
   <div id="root"></div>
 
-  <!-- React 18 UMD + Babel (to run JSX without a build step) -->
   <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
-  <!-- App code -->
   <script type="text/babel" data-presets="react">
+    function clsx(...xs) { return xs.filter(Boolean).join(' '); }
+
     function Card({ title, children, kicker }) {
       return (
         <section className="mb-6">
-          <div className="rounded-2xl bg-white shadow-sm ring-1 ring-gray-200">
-            <div className="p-5 border-b border-gray-100">
+          <div className="rounded-2xl bg-white dark:bg-gray-900 shadow-sm ring-1 ring-gray-200 dark:ring-gray-800">
+            <div className="p-5 border-b border-gray-100 dark:border-gray-800">
               {kicker && (
-                <p className="uppercase tracking-wider text-[11px] text-gray-400 mb-1">
+                <p className="uppercase tracking-wider text-[11px] text-gray-400 dark:text-gray-500 mb-1">
                   {kicker}
                 </p>
               )}
               <h2 className="text-lg font-semibold">{title}</h2>
             </div>
-            <div className="p-5 prose prose-sm max-w-none">
+            <div className="p-5 prose prose-sm max-w-none dark:prose-invert">
               {children}
             </div>
           </div>
@@ -43,19 +71,18 @@
         <div className="grid gap-6">
           <Card title="Welcome">
             <p>
-              This mini website has a clean menu bar with two tabs. Click
-              <strong> Challenge 1</strong> to see the brief turned into a
-              story-like mission log.
+              This website is for my ciphers in an almost story like form. Click
+              <strong> Challenge 1</strong> to start.
             </p>
           </Card>
           <Card title="What you’ll find" kicker="Overview">
             <ul className="list-disc pl-5">
-              <li>A narrative based on the supplied challenge text.</li>
+              <li>A narrative chatgpt made based on my cipher.</li>
               <li>
                 Each section is presented as a chapter (briefing, coordinates,
                 ciphers, leads, and final clue).
               </li>
-              <li>Perfect as a starting point for a puzzle-solving webpage.</li>
+              <li>This is the perfect place to push your skills to their limit.</li>
             </ul>
           </Card>
         </div>
@@ -67,7 +94,7 @@
         <article className="grid gap-6">
           <header className="text-center">
             <h1 className="text-2xl font-bold">Challenge 1 — Mission Log</h1>
-            <p className="mt-1 text-gray-600">
+            <p className="mt-1 text-gray-600 dark:text-gray-300">
               The following story assembles each provided section into a coherent
               case file. Follow the trail.
             </p>
@@ -87,7 +114,7 @@
               A suspicious device lights up somewhere in <em>[REDACTED]</em>. Its
               trace yields precise mapping data:
             </p>
-            <pre className="whitespace-pre-wrap">
+            <pre className="whitespace-pre-wrap bg-gray-50 dark:bg-gray-950/60 rounded-lg p-3">
 51.4492441, -2.5872027, 3a, 7y, 279.97h, 92.54t
             </pre>
             <p>
@@ -113,7 +140,7 @@
               A longer message appears—clearly encrypted—and rumored to require a
               key derived from that building’s name:
             </p>
-            <pre className="whitespace-pre-wrap">
+            <pre className="whitespace-pre-wrap bg-gray-50 dark:bg-gray-950/60 rounded-lg p-3">
 X hybjk hp hsowps igznaop dfr grrfpipizy bptjssg kh ooxpisipk bcix ioopgy
 IX YIT8 reoo xlzp swvt mfnn pszcp Ccri Pv Vwlwps
             </pre>
@@ -157,7 +184,7 @@ IX YIT8 reoo xlzp swvt mfnn pszcp Ccri Pv Vwlwps
 
           <Card title="The Final Dump" kicker="Chapter 7 – Last Chance">
             <p>Then comes a vast string—dense, unforgiving, and final.</p>
-            <pre className="break-all whitespace-pre-wrap">
+            <pre className="break-all whitespace-pre-wrap bg-gray-50 dark:bg-gray-950/60 rounded-lg p-3">
 76b16e99f83621692d2785aff46e7ef78ca3b75ad0f46ff531a956fe1b6edf10f9200b8c991059a12625647b84ead9b334edf72f5725ff83a7833efcdc454e429c521ff21173f50eec9e38899ad4a0772d6881dde72f5d87b43ca1906135ce8513d5302bfc6fc821a08688f55745ccd2e9c2f376a33e8cb7afa49d0842ff5051ffba3e8c23f78908238b59515f497aea7b1ad0f1335e52061a6f70deb76c1759af5aae95e3d7312179f827430f446c17c17cf1745b7c1c6418e826a48fda93ec899738f9cfa09caea597769b929ff274
             </pre>
             <p>
@@ -174,7 +201,7 @@ IX YIT8 reoo xlzp swvt mfnn pszcp Ccri Pv Vwlwps
               <li>Decode the meeting message and cross-check the time and spot.</li>
               <li>Analyze the final dump (hash? ciphertext? file fragment?).</li>
             </ol>
-            <p className="text-gray-600">
+            <p className="text-gray-600 dark:text-gray-300">
               Everything you need is in these chapters—the puzzle is now a path.
             </p>
           </Card>
@@ -182,28 +209,72 @@ IX YIT8 reoo xlzp swvt mfnn pszcp Ccri Pv Vwlwps
       );
     }
 
+    function SunIcon(props) {
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" {...props}>
+          <path strokeWidth="1.5" d="M12 4V2m0 20v-2m8-8h2M2 12h2m12.95 6.95 1.41 1.41M4.64 4.64 6.05 6.05m11.31-1.41 1.41-1.41M4.64 19.36l1.41-1.41M12 7a5 5 0 100 10 5 5 0 000-10z"/>
+        </svg>
+      );
+    }
+    function MoonIcon(props) {
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" {...props}>
+          <path strokeWidth="1.5" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+        </svg>
+      );
+    }
+
+    function ThemeToggle() {
+      const [isDark, setIsDark] = React.useState(() => document.documentElement.classList.contains('dark'));
+      const toggle = () => {
+        const next = !isDark;
+        setIsDark(next);
+        document.documentElement.classList.toggle('dark', next);
+        localStorage.setItem('theme', next ? 'dark' : 'light');
+      };
+      return (
+        <button
+          onClick={toggle}
+          className="inline-flex items-center gap-2 px-3 py-2 rounded-xl text-sm font-medium transition
+                     bg-gray-900 text-white dark:bg-white dark:text-gray-900 shadow hover:opacity-90"
+          aria-label="Toggle theme"
+          title="Toggle theme"
+        >
+          {isDark ? <SunIcon className="h-4 w-4" /> : <MoonIcon className="h-4 w-4" />}
+          <span>{isDark ? 'Light' : 'Dark'}</span>
+        </button>
+      );
+    }
+
     function App() {
       const [tab, setTab] = React.useState("home");
+      const btnBase = "px-4 py-2 rounded-2xl text-sm font-medium transition";
+      const inactive = "hover:bg-gray-100 dark:hover:bg-gray-800";
+      const active = "bg-gray-900 text-white dark:bg-white dark:text-gray-900 shadow";
+
       return (
-        <div className="min-h-screen bg-gray-50 text-gray-900">
-          <header className="sticky top-0 bg-white/80 backdrop-blur shadow-sm z-50">
+        <div className="min-h-screen bg-gray-50 text-gray-900 dark:bg-gray-950 dark:text-gray-100">
+          <header className="sticky top-0 bg-white/80 dark:bg-gray-900/80 backdrop-blur shadow-sm z-50">
             <nav className="mx-auto max-w-5xl px-4">
               <div className="flex items-center justify-between py-4">
-                <h1 className="text-xl font-bold tracking-tight">Cyber Trace</h1>
-                <ul className="flex gap-2">
-                  <li>
-                    <button
-                      onClick={() => setTab("home")}
-                      className={"px-4 py-2 rounded-2xl text-sm font-medium transition " + (tab === "home" ? "bg-gray-900 text-white shadow" : "hover:bg-gray-100")}
-                    >Home</button>
-                  </li>
-                  <li>
-                    <button
-                      onClick={() => setTab("challenge")}
-                      className={"px-4 py-2 rounded-2xl text-sm font-medium transition " + (tab === "challenge" ? "bg-gray-900 text-white shadow" : "hover:bg-gray-100")}
-                    >Challenge 1</button>
-                  </li>
-                </ul>
+                <h1 className="text-xl font-bold tracking-tight">The Challenges</h1>
+                <div className="flex items-center gap-2">
+                  <ul className="flex gap-2">
+                    <li>
+                      <button
+                        onClick={() => setTab("home")}
+                        className={clsx(btnBase, tab === "home" ? active : inactive)}
+                      >Home</button>
+                    </li>
+                    <li>
+                      <button
+                        onClick={() => setTab("challenge")}
+                        className={clsx(btnBase, tab === "challenge" ? active : inactive)}
+                      >Challenge 1</button>
+                    </li>
+                  </ul>
+                  <ThemeToggle />
+                </div>
               </div>
             </nav>
           </header>
@@ -212,8 +283,8 @@ IX YIT8 reoo xlzp swvt mfnn pszcp Ccri Pv Vwlwps
             {tab === "home" ? <Home /> : <ChallengeOne />}
           </main>
 
-          <footer className="mx-auto max-w-5xl px-4 py-10 text-sm text-gray-500">
-            <p>Built for a school challenge — two tabs, simple layout, and a story assembled from the provided sections.</p>
+          <footer className="mx-auto max-w-5xl px-4 py-10 text-sm text-gray-500 dark:text-gray-400">
+            <p>You can communicate with me on discord my username is yxha</p>
           </footer>
         </div>
       );
