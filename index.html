@@ -48,8 +48,8 @@
 
     function Card({ title, children, kicker }) {
       return (
-        <section className="mb-6">
-          <div className="rounded-2xl bg-white dark:bg-gray-900 shadow-sm ring-1 ring-gray-200 dark:ring-gray-800">
+        <section className="mb-8">
+          <div className="rounded-2xl bg-white/70 dark:bg-gray-900/60 shadow-sm ring-1 ring-gray-200/70 dark:ring-gray-800/70 backdrop-blur supports-[backdrop-filter]:bg-white/60 dark:supports-[backdrop-filter]:bg-gray-900/50">
             <div className="p-5 border-b border-gray-100 dark:border-gray-800">
               {kicker && (
                 <p className="uppercase tracking-wider text-[11px] text-gray-400 dark:text-gray-500 mb-1">
@@ -117,6 +117,17 @@
             <pre className="whitespace-pre-wrap bg-gray-50 dark:bg-gray-950/60 rounded-lg p-3">
 51.4492441, -2.5872027, 3a, 7y, 279.97h, 92.54t
             </pre>
+            <details className="mt-2">
+              <summary className="cursor-pointer select-none text-sm text-indigo-600 dark:text-indigo-400">Show hint</summary>
+              <div className="mt-2 text-sm">
+                <ul className="list-disc pl-5 space-y-1">
+                <li>Those numbers resemble map coordinates with camera parameters.</li>
+                <li>Latitude/longitude first; heading/tilt follow.</li>
+                <li>The building name you land on may be useful later.</li>
+                </ul>
+              </div>
+            </details>
+
             <p>
               You swivel to the big screen, punch in the numbers, and let the map
               settle. If the suspect is using building names as keys, then
@@ -127,6 +138,17 @@
           <Card title="Whispers on the Wire" kicker="Chapter 3 – Intercepts">
             <p>Two short bursts arrive over a noisy channel:</p>
             <blockquote className="italic">“That intersection has its cynpr”</blockquote>
+            <details className="mt-2">
+              <summary className="cursor-pointer select-none text-sm text-indigo-600 dark:text-indigo-400">Show hint</summary>
+              <div className="mt-2 text-sm">
+                <ul className="list-disc pl-5 space-y-1">
+                <li>The word “cynpr” is a clue—apply a common alphabet rotation.</li>
+                <li>Try ROT13 on the whole sentence.</li>
+                <li>Then tackle the second line; it uses a different scheme.</li>
+                </ul>
+              </div>
+            </details>
+
             <blockquote className="italic">“E96 DEC66E G:6H 96C6 :D 8C62E”</blockquote>
             <p>
               Different ciphers, same mouth. The first line hints at a place hidden
@@ -144,6 +166,17 @@
 X hybjk hp hsowps igznaop dfr grrfpipizy bptjssg kh ooxpisipk bcix ioopgy
 IX YIT8 reoo xlzp swvt mfnn pszcp Ccri Pv Vwlwps
             </pre>
+            <details className="mt-2">
+              <summary className="cursor-pointer select-none text-sm text-indigo-600 dark:text-indigo-400">Show hint</summary>
+              <div className="mt-2 text-sm">
+                <ul className="list-disc pl-5 space-y-1">
+                <li>This looks like a polyalphabetic cipher.</li>
+                <li>Consider using the building name (no spaces) as a repeating key.</li>
+                <li>Classic Vigenère workflow will restore the message.</li>
+                </ul>
+              </div>
+            </details>
+
             <p>
               Your pen hovers. If the location is the key, then the door this text
               guards might finally swing open.
@@ -161,7 +194,18 @@ IX YIT8 reoo xlzp swvt mfnn pszcp Ccri Pv Vwlwps
               If there’s a key anywhere, it could be buried in commits, releases, or
               a cheeky profile README.
             </p>
-          </Card>
+          
+            <details className="mt-2">
+              <summary className="cursor-pointer select-none text-sm text-indigo-600 dark:text-indigo-400">Show hint</summary>
+              <div className="mt-2 text-sm">
+                <ul className="list-disc pl-5 space-y-1">
+                <li>Scan profile README and pinned repos for odd strings or base64-like blobs.</li>
+                <li>Check commit messages/tags for acrostics or aligned dates.</li>
+                <li>A subtle keyword may be hidden in plain sight.</li>
+                </ul>
+              </div>
+            </details>
+</Card>
 
           <Card title="The Meeting Spot" kicker="Chapter 6 – Rendezvous">
             <p>
@@ -172,6 +216,17 @@ IX YIT8 reoo xlzp swvt mfnn pszcp Ccri Pv Vwlwps
               “uryyb jr fubhyq zrrg ng gur zrrgvat fcbg 12 jr pna gnyx zber jura jr
               trg gurer”
             </blockquote>
+            <details className="mt-2">
+              <summary className="cursor-pointer select-none text-sm text-indigo-600 dark:text-indigo-400">Show hint</summary>
+              <div className="mt-2 text-sm">
+                <ul className="list-disc pl-5 space-y-1">
+                <li>One line uses the same rotation you saw earlier.</li>
+                <li>The numeric pairs are hexadecimal ASCII.</li>
+                <li>Decode both, then combine to get time + location.</li>
+                </ul>
+              </div>
+            </details>
+
             <blockquote className="font-mono">
               79 65 73 20 69 20 73 61 69 64 20 54 68 65 20 4d 65 65 74 69 6e 67 20
               53 70 6f 74 20 31 32
@@ -187,6 +242,17 @@ IX YIT8 reoo xlzp swvt mfnn pszcp Ccri Pv Vwlwps
             <pre className="break-all whitespace-pre-wrap bg-gray-50 dark:bg-gray-950/60 rounded-lg p-3">
 76b16e99f83621692d2785aff46e7ef78ca3b75ad0f46ff531a956fe1b6edf10f9200b8c991059a12625647b84ead9b334edf72f5725ff83a7833efcdc454e429c521ff21173f50eec9e38899ad4a0772d6881dde72f5d87b43ca1906135ce8513d5302bfc6fc821a08688f55745ccd2e9c2f376a33e8cb7afa49d0842ff5051ffba3e8c23f78908238b59515f497aea7b1ad0f1335e52061a6f70deb76c1759af5aae95e3d7312179f827430f446c17c17cf1745b7c1c6418e826a48fda93ec899738f9cfa09caea597769b929ff274
             </pre>
+            <details className="mt-2">
+              <summary className="cursor-pointer select-none text-sm text-indigo-600 dark:text-indigo-400">Show hint</summary>
+              <div className="mt-2 text-sm">
+                <ul className="list-disc pl-5 space-y-1">
+                <li>The character set suggests hex-encoded data rather than plain text.</li>
+                <li>Test whether it’s a digest (e.g., SHA-256) or ciphertext requiring a key.</li>
+                <li>Try interpreting as bytes; look for file signature clues.</li>
+                </ul>
+              </div>
+            </details>
+
             <p>
               You square your shoulders. If everything before was the trail, this is
               the vault. Crack it, and the chase may finally end.
@@ -245,16 +311,330 @@ IX YIT8 reoo xlzp swvt mfnn pszcp Ccri Pv Vwlwps
         </button>
       );
     }
+function ChallengeTwo() {
+  return (
+    <article className="grid gap-6">
+      <header className="text-center">
+        <h1 className="text-2xl font-bold">Challenge 2 — The Accomplices</h1>
+        <p className="mt-1 text-gray-600 dark:text-gray-300">
+          The suspect’s allies seeded ciphers across the district. Decode them and assemble the rendezvous.
+        </p>
+      </header>
+
+      <Card title="Dead Drop Debrief" kicker="Chapter 1">
+        <p>
+  A burner SIM turns up under the false bottom of a cracked phone case—
+  four microtexts cached in a forgotten notes app, timestamps jittering as if
+  backfilled. Whoever owned it moved fast and cleaned faster.
+</p>
+<p>
+  On the drive back to the van, you scroll the fragments. Each looks ordinary
+  until you see the seams: spacing that doesn’t add up, symbols where words
+  should be, a rhythm that feels mechanical rather than human.
+</p>
+<blockquote className="italic">
+  You’ve seen this before—different city, same engineer. They layer simple tricks
+  so the whole looks complicated. Pull one thread, then another.
+</blockquote>
+<p className="text-gray-600 dark:text-gray-300">
+  The board in the back of the van waits—pins, string, and a square of empty cork
+  reserved for the <em>rendezvous</em>. Solve each fragment; make the board sing.
+</p>
+      </Card>
+          <Card title="Ops Channel — Night Shift" kicker="Interlude">
+            <p className="text-sm text-gray-600 dark:text-gray-300">
+              Excerpts from the encrypted ops chat, recovered post-incident.
+            </p>
+            <pre className="whitespace-pre-wrap bg-gray-50 dark:bg-gray-950/60 rounded-lg p-3 text-sm">
+[22:07] SCOUT-4: handoff missed; decoys peeled to river road.
+[22:08] COORD-1: eyes up; chatter says "same pattern again".
+[22:10] SCOUT-4: they left a packet in a phone case — four shards.
+[22:12] COORD-1: paste all fragments to case board. order unknown.
+            </pre>
+            <p>
+              The phrasing “same pattern again” becomes important once the fragments start to click.
+            </p>
+          </Card>
+
+      <Card title="Fragment A" kicker="Chapter 2 – Fragment">
+        <p>An intercepted chatter arrives—scrambled but rhythmic.</p>
+        <blockquote className="font-mono break-all">ERERN ESDDO TIO</blockquote>
+        <details className="mt-2">
+          <summary className="cursor-pointer select-none text-sm text-indigo-600 dark:text-indigo-400">Show hint</summary>
+          <div className="mt-2 text-sm">
+            <ul className="list-disc pl-5 space-y-1">
+              <li>Letters seem to follow a zigzag path.</li>
+              <li>Try a rail fence arrangement.</li>
+              <li>Three rails should untangle it.</li>
+            </ul>
+          </div>
+        </details>
+      </Card>
+
+      <Card title="Fragment B" kicker="Chapter 3 – Fragment">
+        <p>Another scrap is just bytes—cryptic at first glance.</p>
+        <blockquote className="font-mono break-all">
+          37 32 20 68 6f 75 72 73 20 61 66 74 65 72 20 73 75 6e 73 65 74
+        </blockquote>
+        <details className="mt-2">
+          <summary className="cursor-pointer select-none text-sm text-indigo-600 dark:text-indigo-400">Show hint</summary>
+          <div className="mt-2 text-sm">
+            <ul className="list-disc pl-5 space-y-1">
+              <li>These are hexadecimal pairs.</li>
+              <li>Convert each to ASCII.</li>
+              <li>You’ll reveal a time window.</li>
+            </ul>
+          </div>
+        </details>
+      </Card>
+<Card title="Drone Feed — Warehouse Row" kicker="Interlude">
+  <p>
+    The drone sweeps the canal-side loading bays. Thermals bloom, fade, and move in pairs.
+    On three doors, a slogan repeats with slight differences — like someone stenciled,
+    wiped, then re-stenciled in a hurry.
+  </p>
+  <blockquote className="italic">
+    The paint traces form a rhythm, as if words are sliding along a scale.
+  </blockquote>
+  <p>
+    On a nearby wall, chalk lines mark times in broad blocks — a crude “window” schedule.
+  </p>
+</Card>
+
+      <Card title="Fragment C" kicker="Chapter 4 – Fragment">
+        <p>A memo app holds this ciphertext.</p>
+        <blockquote className="font-mono break-all">RB EMXZBV</blockquote>
+        <details className="mt-2">
+          <summary className="cursor-pointer select-none text-sm text-indigo-600 dark:text-indigo-400">Show hint</summary>
+          <div className="mt-2 text-sm">
+            <ul className="list-disc pl-5 space-y-1">
+              <li>This is a polyalphabetic cipher.</li>
+              <li>Think Vigenère.</li>
+              <li>The key is hidden in another fragment.</li>
+            </ul>
+          </div>
+        </details>
+      </Card>
+
+      <Card title="Fragment D" kicker="Chapter 5 – Fragment">
+        <p>A sticky note shows index triplets.</p>
+        <blockquote className="font-mono break-all">RZDUEVESNO</blockquote>
+        <details className="mt-2">
+          <summary className="cursor-pointer select-none text-sm text-indigo-600 dark:text-indigo-400">Show hint</summary>
+          <div className="mt-2 text-sm">
+            <ul className="list-disc pl-5 space-y-1">
+                  <li>The layout wants a grid.</li>
+                  <li>Try a <em>columnar transposition</em>.</li>
+                  <li>Use the <strong>first word</strong> of Fragment A’s directive as the key.</li>
+                </ul>
+          </div>
+        </details>
+      </Card>
+
+      <Card title="Fragment E" kicker="Chapter 6 – Fragment">
+        <p>Street cam overlays reveal slogans spray-painted on walls.</p>
+        <blockquote className="font-mono break-all">
+          UL FD IKRQW LQ SODFH | VM GE JLRYXW MQ TQDG | WK HF HKQXV RP ROCF
+        </blockquote>
+        <details className="mt-2">
+          <summary className="cursor-pointer select-none text-sm text-indigo-600 dark:text-indigo-400">Show hint</summary>
+          <div className="mt-2 text-sm">
+            <ul className="list-disc pl-5 space-y-1">
+              <li>Simple shift cipher.</li>
+              <li>Classic Caesar shift.</li>
+              <li>Look for the word SAFEHOUSE to align it.</li>
+            </ul>
+          </div>
+        </details>
+      </Card>
+
+      <Card title="Fragment F" kicker="Chapter 7 – Fragment">
+        <p>A maintenance bulletin pinned to the board reads:</p>
+        <blockquote className="italic">
+          <span className="block">Service trucks occasionally park where lanes narrow.</span>
+          <span className="block">All crews must log arrivals on entry—safety first.</span>
+          <span className="block">Forklifts operate near containers without escort.</span>
+          <span className="block">Every dock light must remain functional after dusk.</span>
+          <span className="block">Hatches and roll-ups are to be secured nightly.</span>
+        </blockquote>
+        <details className="mt-2">
+          <summary className="cursor-pointer select-none text-sm text-indigo-600 dark:text-indigo-400">Show hint</summary>
+          <div className="mt-2 text-sm">
+            <ul className="list-disc pl-5 space-y-1">
+              <li>Check the first letters.</li>
+              <li>Read vertically for a hidden word.</li>
+              <li>It’s an acrostic.</li>
+            </ul>
+          </div>
+        </details>
+      </Card>
+<Card title="Stakeout — Field Notes" kicker="Interlude">
+  <p>
+    Rain crawls across the windshield. The district slows. You underline two items in your notebook:
+    <em>the feature</em> you keep circling on the map and the <em>area name</em> lifted from that
+    too-neat notice board.
+  </p>
+  <p>
+    A forklift squeals in the distance. Somewhere a roll-up door stutters, then claps shut.
+  </p>
+</Card>
+
+      <Card title="Fragment G" kicker="Chapter 8 – Fragment">
+        <p>Another memo appears with strange symbols.</p>
+        <blockquote className="font-mono break-all">NZ PUK QW&amp;K RZKAVP QZ OL XQIX</blockquote>
+        <details className="mt-2">
+          <summary className="cursor-pointer select-none text-sm text-indigo-600 dark:text-indigo-400">Show hint</summary>
+          <div className="mt-2 text-sm">
+            <ul className="list-disc pl-5 space-y-1">
+              <li>Again polyalphabetic.</li>
+              <li>Yes, Vigenère.</li>
+              <li>Key comes from the directive in Fragment A.</li>
+            </ul>
+          </div>
+        </details>
+      </Card>
+
+      <Card title="Case Board — String Map" kicker="Interlude">
+  <p>
+    The board is a mess of yarn: <strong>directive</strong> on one side, a blocky
+    <strong>time window</strong> below, a scrawled <strong>instruction</strong> in the corner,
+    and two labels — <strong>feature</strong> and <strong>area</strong> — pinned to the map margin.
+  </p>
+  <p>
+    Put them in the order that makes operational sense; the rest should snap into place.
+  </p>
+</Card>
+<Card title="Cross-Solve: The Rendezvous" kicker="Chapter 9 – Assembly">
+        <p>
+          Combine the decoded fragments into a single instruction string. The correct
+          sequence will unlock the accomplices’ meeting spot.
+        </p>
+      
+<div className="prose prose-sm dark:prose-invert">
+  <p>
+    Pins and string crisscross the board while the ops clock ticks down.
+    Radio chatter filters through your earpiece—forklifts squeal, boots splash
+    through shallow puddles, a gate clanks open somewhere to the east.
+  </p>
+  <p>
+    You finger-trace the line again: <em>directive</em> first, because someone
+    has to <em>do</em> something; the <em>window</em> next, because timing is
+    everything; the <em>instruction</em> follows—practical, terse, inevitable.
+    Then the map pins: <em>feature</em> and <em>area</em>—two nouns that describe
+    the only meet spot that makes sense in this district.
+  </p>
+  <blockquote className="italic">
+    “Make it sing,” your partner mutters—slang for “make the pieces lock.”
+  </blockquote>
+  <p>
+    When the words sit in the right order, your stomach knows before your brain does.
+    It reads like something a real crew would write in a hurry.
+  </p>
+</div>
+</Card>
+
+      <Card title="Meta-Puzzle: Door Panel" kicker="Chapter 10 – Final Gate">
+        <p>
+          Input format: <code>[Directive]|[HH:MM within window]|[Instruction]|[Feature]|[Area]</code>.
+        </p>
+      
+<div className="prose prose-sm dark:prose-invert">
+  <p>
+    The keypad plate is pitted and scuffed. A flaking sticker warns about
+    “tamper alarms.” A faint whirr spools up behind the door—compressors,
+    maybe a refrigerated room, maybe just old machinery pretending to matter.
+  </p>
+  <p>
+    You rehearse the sequence once more under your breath. Your watch vibrates:
+    thirty-seven minutes left in the window. Somewhere above, rain hisses on
+    corrugated iron.
+  </p>
+  <p>
+    The last key clicks different—deeper, with confidence. A relay trips.
+    Bolts retract in a staggered rhythm. The door breathes out.
+  </p>
+</div>
+</Card>
+
+      <Card title="Final Transmission" kicker="Epilogue">
+        <p>A last ping on the network confirms movement near the location.</p>
+      </Card>
+<Card title="Teaser — Challenge 3: The Handler" kicker="Next Case">
+  <p>
+    Inside, a ledger stitched with grease pencil marks and initials. Whole pages
+    reference a figure only called <em>the Handler</em>—someone who never shows
+    up on cameras but signs every order with a single symbol.
+  </p>
+  <blockquote className="italic">
+    Four arcs forming a broken circle. The fifth is always scratched out.
+  </blockquote>
+  <p>
+    Tucked in the back: a warped voicemail chip and a receipt for bulk
+    “acetate overlays.” The spectrogram on your tablet blooms with odd
+    harmonics, as if the spoken words were braided with something else.
+  </p>
+  <p>
+    The ledger’s last line is a date—three days from now—and a place name you
+    don’t recognize. The symbol appears again in the margin, darker this time.
+  </p>
+  <p className="text-gray-600 dark:text-gray-300">
+    Brief your team. The next pattern won’t be written on walls.
+  </p>
+</Card>
+    </article>
+  );
+}
+function ChallengeThree() {
+  return (
+    <article className="grid gap-6">
+      <header className="text-center">
+        <h1 className="text-2xl font-bold">Challenge 3 — The Handler (Placeholder)</h1>
+        <p className="mt-1 text-gray-600 dark:text-gray-300">
+          A new pattern emerges. For now, only fragments of a symbol and a few
+          recovered notes point the way forward.
+        </p>
+      </header>
+
+      <Card title="Briefing" kicker="Coming Soon">
+        <p>
+          You recovered a ledger referencing someone known only as <em>the Handler</em>.
+          Orders are signed with a single emblem: four arcs forming a broken circle; the
+          fifth is scratched out.
+        </p>
+      </Card>
+
+      <Card title="Symbol Motif" kicker="Clue">
+        <blockquote className="italic">
+          Four arcs forming a broken circle. The fifth is always scratched out.
+        </blockquote>
+        <p className="mt-3">
+          The emblem appears near dates, shipments, and short voice notes. Its purpose
+          is unclear—for now.
+        </p>
+      </Card>
+
+      <Card title="Status" kicker="Work in Progress">
+        <p>
+          The next cipher trail is being assembled. This page will update with the first
+          puzzle set and a fresh briefing.
+        </p>
+        <p className="text-gray-600 dark:text-gray-300">
+          In the meantime, keep your notes from Challenges 1 &amp; 2—you’ll need them.
+        </p>
+      </Card>
+    </article>
+  );
+}
 
     function App() {
       const [tab, setTab] = React.useState("home");
-      const btnBase = "px-4 py-2 rounded-2xl text-sm font-medium transition";
-      const inactive = "hover:bg-gray-100 dark:hover:bg-gray-800";
-      const active = "bg-gray-900 text-white dark:bg-white dark:text-gray-900 shadow";
+      const btnBase = "px-4 py-2 rounded-2xl text-sm font-medium transition duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/60 dark:focus-visible:ring-indigo-400/60 ring-offset-2 ring-offset-white dark:ring-offset-gray-900";
+      const inactive = "text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800";
+      const active = "bg-gray-900 text-white dark:bg-white dark:text-gray-900 shadow-md ring-1 ring-gray-900/5 dark:ring-white/10";
 
       return (
-        <div className="min-h-screen bg-gray-50 text-gray-900 dark:bg-gray-950 dark:text-gray-100">
-          <header className="sticky top-0 bg-white/80 dark:bg-gray-900/80 backdrop-blur shadow-sm z-50">
+        <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white text-gray-900 dark:from-gray-950 dark:to-gray-900 dark:text-gray-100">
+          <header className="sticky top-0 bg-white/80 dark:bg-gray-900/70 backdrop-blur shadow-sm border-b border-gray-200/60 dark:border-gray-800/60 z-50">
             <nav className="mx-auto max-w-5xl px-4">
               <div className="flex items-center justify-between py-4">
                 <h1 className="text-xl font-bold tracking-tight">The Challenges</h1>
@@ -272,6 +652,19 @@ IX YIT8 reoo xlzp swvt mfnn pszcp Ccri Pv Vwlwps
                         className={clsx(btnBase, tab === "challenge" ? active : inactive)}
                       >Challenge 1</button>
                     </li>
+                    <li>
+                      <button
+                        onClick={() => setTab("challenge2")}
+                        className={clsx(btnBase, tab === "challenge2" ? active : inactive)}
+                      >Challenge 2</button>
+                    </li>
+                  
+                    <li>
+                      <button
+                        onClick={() => setTab("challenge3")}
+                        className={clsx(btnBase, tab === "challenge3" ? active : inactive)}
+                      >Challenge 3</button>
+                    </li>
                   </ul>
                   <ThemeToggle />
                 </div>
@@ -279,11 +672,14 @@ IX YIT8 reoo xlzp swvt mfnn pszcp Ccri Pv Vwlwps
             </nav>
           </header>
 
-          <main className="mx-auto max-w-5xl px-4 py-8">
-            {tab === "home" ? <Home /> : <ChallengeOne />}
+          <main className="mx-auto max-w-6xl px-4 py-10">
+            {tab === "home" && <Home />}
+            {tab === "challenge" && <ChallengeOne />}
+            {tab === "challenge2" && <ChallengeTwo />}
+            {tab === "challenge3" && <ChallengeThree />}
           </main>
 
-          <footer className="mx-auto max-w-5xl px-4 py-10 text-sm text-gray-500 dark:text-gray-400">
+          <footer className="mx-auto max-w-6xl px-4 py-10 text-sm text-gray-500 dark:text-gray-400 border-t border-gray-200/60 dark:border-gray-800/60">
             <p>You can communicate with me on discord my username is yxha</p>
           </footer>
         </div>
